@@ -47,18 +47,12 @@ sdk.on('Telemetry', function (telemetry: Telemetry) {
     
     // Speed and Position
     console.log('\nSpeed and Position:');
-    console.log('Speed:', Math.round(telemetry.values.Speed * 3.6), 'km/h'); // Convert m/s to km/h
-    console.log('RPM:', `${rpmColor}${Math.round(telemetry.values.RPM)} (${rpmPercentage.toFixed(1)}%)\x1b[0m`);
-    console.log('Gear:', telemetry.values.Gear);
+    // console.log('Speed:', Math.round(telemetry.values.Speed * 3.6), 'km/h'); // Convert m/s to km/h
+    console.log('RPM:', `${Math.round(telemetry.values.RPM)} (${rpmPercentage.toFixed(1)}%)`);
+    // console.log('Gear:', telemetry.values.Gear);
 
     if(blinkStick) {
-        if(rpmColor === 'blue') {   
-            setColorForAllLeds(blinkStick, {r: 0, g: 0, b: 255});
-        } else if(rpmColor === 'orange') {
-            setColorForAllLeds(blinkStick, {r: 255, g: 165, b: 0});
-        } else if(rpmColor === 'yellow') {
-            setColorForAllLeds(blinkStick, {r: 255, g: 255, b: 0});
-        }
+        setColorForAllLeds(blinkStick, rpmColor, 5);
     }
 })
 

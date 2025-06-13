@@ -1,19 +1,23 @@
 import { Telemetry } from "./telemetry-model";
 
-export function getRpmColor(telemetry: Telemetry) {
+export function getRpmColor(telemetry: Telemetry): { r: number, g: number, b: number } {
     // Calculate RPM percentage
     const maxRPM = telemetry.values.PlayerCarSLBlinkRPM;
     const currentRPM = telemetry.values.RPM;
     const rpmPercentage = (currentRPM / maxRPM) * 100;
     
-    // Get color based on RPM percentage
-    let rpmColor = 'black'; // Default color (reset)
     if (rpmPercentage >= 99) {
-        rpmColor = 'blue'; // Blue
-    } else if (rpmPercentage >= 93) {
-        rpmColor = 'orange'; // Orange
-    } else if (rpmPercentage >= 88) {
-        rpmColor = 'yellow'; // Yellow
+        return { r: 0, g: 0, b: 255 }; // Blue
     }
-    return rpmColor;
+    if (rpmPercentage >= 93) {
+        return { r: 255, g: 165, b: 0 }; // Orange
+    } 
+    if (rpmPercentage >= 88) {
+        return { r: 255, g: 255, b: 0 }; // Yellow
+    }
+    if (rpmPercentage >= 70) {
+        return { r: 0, g: 255, b: 0 }; // Green
+    }
+    
+    return { r: 0, g: 0, b: 0 }; // Default to black
 }
