@@ -1,10 +1,4 @@
-import {
-  BlinkStick,
-  ColorObject,
-  ColorOptions,
-  findFirstAsync,
-  NormalizedColorOptions,
-} from "@ginden/blinkstick-v2";
+import { BlinkStick, ColorObject, findFirstAsync } from "@ginden/blinkstick-v2";
 
 const DEVICE_SERIAL = "BS019328-3.0";
 const DEVICE_LED_COUNT = 8;
