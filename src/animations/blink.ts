@@ -1,19 +1,21 @@
 import { BlinkStick, ColorObject } from "@ginden/blinkstick-v2";
 import { setColorForAllLeds, turnOff } from "../helpers";
 import { wait } from "../helpers";
-import { Animation, AnimationOptions } from "./animation.model";
+import { Animation } from "./animation.model";
 
 export function blink(
   device: BlinkStick,
   color: ColorObject,
   delay: number = 100,
-  count: number = 1
+  count: number = 1,
+  callBack?: () => void
 ) {
   return setInterval(async () => {
     await setColorForAllLeds(device, color);
     await wait(delay);
     await setColorForAllLeds(device, { r: 0, g: 0, b: 0 });
     await wait(delay);
+    callBack?.();
   }, delay * count);
 }
 
@@ -32,13 +34,15 @@ export class Blink extends Animation {
       this.device,
       this.color,
       this.options.delay,
-      this.options.count
+      this.options.count,
+      this.callBack
     );
   }
 
   async stop() {
     if (this.interval) {
       stopBlink(this.interval);
+      this.callBack?.();
       turnOff(this.device);
     }
   }

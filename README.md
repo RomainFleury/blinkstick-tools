@@ -1,37 +1,80 @@
-# python-alerter
-Small scripts to play with BlinkStick
+# Python Alerter
 
-## Setup for BlinkStick Square with TypeScript
+A TypeScript project that uses BlinkStick LED devices to create visual alerts and animations.
 
-This project uses [blinkstick-node](https://github.com/arvydas/blinkstick-node) to control the [BlinkStick Square](https://www.blinkstick.com/products/blinkstick-square) from Node.js/TypeScript.
+## Features
 
-### Prerequisites
-- **Yarn** (v1.x)
-- **Node.js** (preferably v16 LTS for best compatibility with native modules)
-- **Apple Silicon (M1/M2/M3) users:**
-  - Native modules like `node-hid` may not build on ARM64 Node.js. You may need to:
-    - Use Node.js v16 (LTS) with [nvm](https://github.com/nvm-sh/nvm)
-    - Or, run your terminal under Rosetta 2 (x86_64 emulation)
+- Control BlinkStick LED devices
+- Create and manage LED animations
+- Support for multiple LED patterns and colors
+- Unit testing with Jest
+- TypeScript support
 
-### Install dependencies
-```sh
-# Use Node.js v16 for best compatibility
-nvm install 16
-nvm use 16
+## Prerequisites
 
-# Install Yarn if not already installed
+- Node.js (v22.0.0 or higher)
+- Yarn package manager
+- BlinkStick device (tested with BS019328-3.0)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd python-alerter
+```
+
+2. Install dependencies:
+```bash
 yarn install
 ```
 
-### Running the test script
-```sh
-yarn test
-```
-This will run a TypeScript script that lights up your BlinkStick Square with a rainbow pattern.
+## Usage
 
-### Troubleshooting
-- If you see errors related to `node-hid` or native module builds:
-  - Make sure you are using Node.js v16 (not v18, v20, or v22)
-  - Try running your terminal under Rosetta 2 (right-click Terminal > Get Info > Open using Rosetta)
-  - Ensure you have Xcode Command Line Tools installed: `xcode-select --install`
-- For more help, see the [blinkstick-node issues](https://github.com/arvydas/blinkstick-node/issues)
+### Running Tests
+
+```bash
+# Run all tests
+yarn test
+
+# Run tests in watch mode
+yarn test:watch
+```
+
+### Running Animations
+
+```bash
+# Run animation test
+yarn test-animate
+
+# Run monitor
+yarn monitor
+```
+
+### iRacing Integration
+
+```bash
+# Run iRacing telemetry
+yarn iracing
+```
+
+
+## Development
+
+The project uses:
+- TypeScript for type safety
+- BlinkStick v2 library for LED control
+
+### Testing
+
+The project includes a mock implementation of the BlinkStick device for testing. Tests are located in the `__tests__` directories and can be run using Jest.
+
+### Building
+
+```bash
+yarn build
+```
+
+## License
+
+MIT
