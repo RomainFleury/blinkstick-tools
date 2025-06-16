@@ -21,7 +21,7 @@ A TypeScript project that uses BlinkStick LED devices to create visual alerts an
 1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd python-alerter
+cd blinkstick-tools
 ```
 
 2. Install dependencies:
